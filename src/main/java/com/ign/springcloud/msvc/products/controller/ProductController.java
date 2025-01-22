@@ -1,7 +1,8 @@
 package com.ign.springcloud.msvc.products.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.ign.springcloud.msvc.products.entity.Product;
+
+import com.ign.libs.msvc.commons.entity.Product;
 import com.ign.springcloud.msvc.products.service.ProductService;
 import java.util.List;
 import java.util.Optional;

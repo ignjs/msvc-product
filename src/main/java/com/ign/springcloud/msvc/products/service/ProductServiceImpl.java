@@ -9,7 +9,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ign.springcloud.msvc.products.entity.Product;
+import com.ign.libs.msvc.commons.entity.Product;
 import com.ign.springcloud.msvc.products.repository.ProductRepository;
 
 @Service
