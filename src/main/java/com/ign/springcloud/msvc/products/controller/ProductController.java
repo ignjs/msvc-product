@@ -7,6 +7,7 @@ import com.ign.springcloud.msvc.products.service.ProductService;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +27,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 public class ProductController {
 
+	private final Logger log = org.slf4j.LoggerFactory.getLogger(ProductController.class);
+
 	final private ProductService service;
 
 	public ProductController(ProductService service) {
@@ -39,6 +42,7 @@ public class ProductController {
 	 */
 	@GetMapping
 	public List<Product> list() {
+		log.info("Listing all products");
 		return this.service.findAll();
 	}
 
@@ -54,6 +58,7 @@ public class ProductController {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> details(@PathVariable Long id) throws InterruptedException {
+		log.info("Retrieving product with ID: " + id);
 
 		/*
 		 * if (id.equals(10L)) {
@@ -79,6 +84,7 @@ public class ProductController {
 	 */
 	@PostMapping
 	public ResponseEntity<Product> create(@RequestBody Product product) {
+		log.info("Creating product: " + product.getName());
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(product));
 	}
 
@@ -92,6 +98,7 @@ public class ProductController {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Product product) {
+		log.info("Updating product with ID: " + id);
 		Optional<Product> productOptional = service.findById(id);
 		if (productOptional.isPresent()) {
 			Product productDB = productOptional.orElseThrow();
@@ -113,6 +120,7 @@ public class ProductController {
 	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
+		log.info("Deleting product with ID: " + id);
 		Optional<Product> productOptional = service.findById(id);
 		if (productOptional.isPresent()) {
 			this.service.deleteById(id);
