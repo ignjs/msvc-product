@@ -35,6 +35,15 @@ Este proyecto es un microservicio de producto desarrollado con Spring Cloud. Su 
 - `PUT /products/{id}`: Actualiza un producto existente.
 - `DELETE /products/{id}`: Elimina un producto por su ID.
 
+## Trazabilidad con Zipkin
+
+El proyecto utiliza Zipkin para la trazabilidad distribuida de las solicitudes entre microservicios.  
+Para ejecutar Zipkin usando MySQL como almacenamiento, utiliza el siguiente comando:
+
+```sh
+STORAGE_TYPE=mysql MYSQL_USER=zipkin MYSQL_PASS=zipkin java -jar zipkin.jar
+```
+
 ## Contribuciones
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request.
